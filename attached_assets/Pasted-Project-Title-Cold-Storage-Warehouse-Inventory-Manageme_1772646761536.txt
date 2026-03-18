@@ -1,0 +1,176 @@
+Project Title:
+Cold Storage Warehouse Inventory Management System (Internal MVP)
+Project Type:
+Web-based internal inventory management system for agricultural cold storage (Potato & Corn). 
+Tech Requirements: Web application
+Role-based authentication, Optimized for 25 concurrent users, High-performance for large datasets and Scalable design
+Business Context: This system manages cold storage warehouses storing potatoes and corn.
+Operations scale:
+~250 trucks received per day
+~20 warehouse locations
+~40 cold rooms per warehouse
+Lot traceability required
+Partial outbound shipments allowed
+This is a lot-based inventory system (not product-only inventory).
+CORE FEATURES
+1️⃣ Authentication & Roles
+Create role-based access control:
+Roles:
+Admin (full access)
+Manager (warehouse-level management)
+Data Entry (can create/update records but not delete)
+Viewer (read-only access)
+Each user may optionally be restricted to a specific warehouse.
+Secure internal login system.
+2️⃣ Warehouse Structure
+Admin can dynamically create:
+1-Warehouse:
+Name
+Location
+2-Cold Rooms:
+Linked to warehouse
+Type of potato to be stored
+Fixed capacity (kilo)
+Storage type (bulk / pallets )
+Active/Inactive status
+The system must calculate room utilization automatically.
+3️⃣ Supplier & Farm Management
+Track:
+Supplier
+Farm source
+Contact information
+4️⃣ Inbound Operations (Truck-Based)
+When a truck arrives, system records:
+Truck number
+Supplier
+Farm source
+Product type (Potato / Corn)
+Variety type
+Anti-sprout type
+Total weight (tons)
+Arrival date
+The system generates a unique Lot Number (Batch ID).
+Then assign batch to:
+Warehouse
+Room
+Track:
+Kilograms
+Jampo bag numbers
+Expiration date
+Received date
+Status (Stored / Partial / Depleted / Expired)
+5️⃣ Outbound Shipments
+Allow:
+Full batch shipment
+Partial shipment
+Track:
+Batch (lot number)
+Quantity shipped (tons)
+Destination
+Shipped date
+Remaining quantity auto-calculated
+6️⃣ Loss Tracking
+Allow recording:
+Rot
+Damage
+Shrinkage
+Fields:
+Batch ID
+Loss type
+Quantity
+Recorded date
+Remaining stock auto-adjusted.
+7️⃣ Sensor Monitoring
+Each cold room logs:
+Temperature
+Humidity
+CO2 level
+Timestamp
+Sensor data stored efficiently (designed for large growth).
+Dashboard must highlight:
+Rooms exceeding safe thresholds.
+DASHBOARD (Real-Time)
+Main dashboard must include:
+Operational KPIs:
+Trucks received today
+Total tons received today
+Total tons shipped today
+Active batches
+Total current inventory
+Capacity utilization %
+Number of rooms over threshold
+Expiring in next 7 days
+Loss recorded today
+Warehouse View:
+Inventory per warehouse
+Utilization per warehouse
+Utilization per room
+Inventory Breakdown:
+By product type
+By supplier
+Aging buckets:
+0–30 days
+30–60 days
+60+ days
+REPORTING MODULE
+Generate:
+Daily inbound report
+Daily outbound report
+Inventory snapshot report
+Aging report
+Expiration alert report
+Loss report
+Monthly accounting export
+Export formats:
+CSV
+PDF
+PERFORMANCE & DATA DESIGN REQUIREMENTS
+System must handle:
+~100,000+ batches per year
+Millions of sensor records over time
+Requirements:
+Indexed queries
+Efficient aggregations
+Pagination on tables
+Optimized dashboard queries
+DATA MODEL (HIGH LEVEL)
+Entities:
+Users
+Warehouses
+Rooms
+Suppliers
+Farms
+Trucks (Inbound)
+Batches (Lots)
+Shipments (Outbound)
+Losses
+RoomSensors
+Lot-based tracking is mandatory.
+Inventory must always be calculated dynamically based on: Inbound - Outbound - Loss.
+UI REQUIREMENTS
+Clean professional dashboard
+Table filtering
+Search by lot number
+Search by supplier
+Expiration alerts indicator
+Utilization progress bars
+KPI summary cards
+Designed for laptop usage.
+CONSTRAINTS
+Internal company use only
+25 concurrent users
+Web-based only
+MVP level but scalable architecture
+NON-FUNCTIONAL REQUIREMENTS
+Secure authentication
+Audit log for critical actions
+Role-based authorization
+Data validation to prevent negative inventory
+Automatic timestamp tracking
+GOAL
+Build a scalable, high-performance internal cold storage inventory management system that supports:
+Lot traceability
+Real-time monitoring
+Operational decision support
+Exportable accounting reports
+
